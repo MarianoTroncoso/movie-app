@@ -1,0 +1,6 @@
+{"message":"hello","level":"info"}
+{"message":"hello","level":"info"}
+{"message":"hello","level":"info"}
+{"message":"\u001b[0mGET /auth/login \u001b[36m304\u001b[0m 3.801 ms - -\u001b[0m\n","level":"info"}
+{"message":"hello","level":"info"}
+{"message":"::1 - - [18/May/2021:19:45:07 +0000] \"GET /auth/login HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36\"\n","level":"info"}
