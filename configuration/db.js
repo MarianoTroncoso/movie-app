@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const _uri = 'mongodb+srv://admin:benji123@movieapp.shikt.mongodb.net/sample_mflix?retryWrites=true&w=majority'
+const _uri = process.env.MONGO_URI
 
 const dbCon = (coll, cb) => {
   MongoClient.connect(_uri, { 

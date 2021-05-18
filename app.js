@@ -1,6 +1,7 @@
 const express = require('express');
 const { logger } = require('./configuration');
 const createError = require('http-errors');
+require('dotenv').config()
 
 const middlewares = require('./middlewares');
 const routes = require('./routes');
