@@ -8,3 +8,6 @@
 {"message":"::1 - - [18/May/2021:20:58:47 +0000] \"GET /movies/1 HTTP/1.1\" 200 12474 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
 {"message":"::1 - - [18/May/2021:21:00:52 +0000] \"GET /movies/2 HTTP/1.1\" 200 13664 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
 {"message":"::1 - - [18/May/2021:21:12:58 +0000] \"GET /movie/573a1390f29313caabcd5501 HTTP/1.1\" 200 1386 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
+{"message":"::1 - - [18/May/2021:21:15:20 +0000] \"GET /movie/5123 HTTP/1.1\" 400 11 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
+{"message":"::1 - - [18/May/2021:21:21:14 +0000] \"GET /movie/573a1390f29313caabcd5501 HTTP/1.1\" 200 1386 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
+{"message":"::1 - - [18/May/2021:21:28:16 +0000] \"GET /comments HTTP/1.1\" 404 147 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}

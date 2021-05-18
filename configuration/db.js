@@ -12,7 +12,6 @@ const dbCon = (coll, cb) => {
     await cb(db);
     client.close();
   })
-  .catch()
 }
 
 // test 
