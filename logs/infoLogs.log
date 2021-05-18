@@ -11,3 +11,4 @@
 {"message":"::1 - - [18/May/2021:21:15:20 +0000] \"GET /movie/5123 HTTP/1.1\" 400 11 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
 {"message":"::1 - - [18/May/2021:21:21:14 +0000] \"GET /movie/573a1390f29313caabcd5501 HTTP/1.1\" 200 1386 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
 {"message":"::1 - - [18/May/2021:21:28:16 +0000] \"GET /comments HTTP/1.1\" 404 147 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
+{"message":"::1 - - [18/May/2021:21:33:06 +0000] \"GET /comments HTTP/1.1\" 404 9 \"-\" \"PostmanRuntime/7.26.10\"\n","level":"info"}
