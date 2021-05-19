@@ -1,14 +1,21 @@
 const { dbCon } = require('../configuration');
-const { userValidator } = require('../validator');
+const { userValidator, logSchema } = require('../validator');
+const { hashSync, compareSync } = require('bcryptjs')
 
 class User { 
   constructor(userData){
     this.userData = {...userData};
   };
 
+  // instert
   save(cb){
     dbCon('users', async (db) => {
       try {
+
+        // hash the password
+        const hashedPass = hashSync(this.userData['password'], 12); // 12 iteraciones
+        this.userData['password'] = hashedPass;
+        
         await db.insertOne(this.userData);
         cb()
       } catch (error) {
@@ -57,22 +64,49 @@ class User {
   static validate(userData){
     return userValidator.validate(userData);
   }
+
+  static login(userData){
+    return new Promise( (resolve, reject) => {
+
+      // validation
+      const validation = logSchema.validate(userData);
+      if(validation.error){
+        const error = new Error(validation.error.message);
+        error.statusCode = 400;
+        return resolver(error);
+      };
+
+      
+      dbCon('users', async (db) => {
+        try {
+
+          // find user
+          const user = await db.findOne({'$or': [{username: userData['username']},{email: userData['email']}]});
+
+          // not valid user? + incorrect password? 
+          if(!user || !compareSync(userData['password'], user.password)){
+            const error = new Error('Please enter valid username and password');
+            error.statusCode = 404;
+            return resolve(error);
+          };
+
+          resolve(user);
+
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+  };
 };
 
-/*
-const user = new User({
-  username: 'marianot',
-  email: 'messi@gmail.com',
-  password: 'Mariano-1234',
-  first_name: 'Mariano',
-  last_name: 'Troncoso'
-});
+// User.login({
+//   username: 'danilo',
+//   password: 'Danilo-1234'
+// })
+// .then( res => {
+//   console.log(res)
+// })
 
-user.checkExistence()
-.then( check => {
-  console.log(check)
-})
-.catch( err => console.log(err));
-*/
 
 module.exports = User;

@@ -1,6 +1,22 @@
-const logger = require('../../configuration/logger')
+const { User } = require('../../models');
+const createError = require('http-errors');
 
-module.exports.getLogin = (req, res, next) => {
-  logger.info('hello');
-  res.send('Welcome to login page');
+const postLogin = (req, res, next) => {
+  User.login(req.body)
+  .then( result => {
+
+    if(result instanceof Error){
+      next(result);
+    }
+
+    res.json(result);
+
+  })
+  .catch( error => {
+    next(createError(500));
+  });
 };
+
+module.exports = {
+  postLogin
+}

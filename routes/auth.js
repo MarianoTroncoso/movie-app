@@ -1,11 +1,11 @@
 const { Router } = require('express');
-const { getLogin, postSignup } = require('../controllers');
+const { postLogin, postSignup } = require('../controllers');
 
 const router = Router();
 
 router 
   // .get('/login', getLogin)
-  .post('/login')
+  .post('/login', postLogin)
   // .get('/signup')
   .post('/signup', postSignup)
 
