@@ -54,6 +54,7 @@ class User {
   }
 };
 
+/*
 const user = new User({
   username: 'marianot',
   email: 'messi@gmail.com',
@@ -66,4 +67,7 @@ user.checkExistence()
 .then( check => {
   console.log(check)
 })
-.catch( err => console.log(err))
+.catch( err => console.log(err));
+*/
+
+module.exports = User;

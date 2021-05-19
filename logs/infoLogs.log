@@ -21,3 +21,7 @@
 {"message":"::1 - - [18/May/2021:22:10:46 +0000] \"GET /comments HTTP/1.1\" 404 23 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"Bad Request","level":"error"}
 {"message":"::1 - - [18/May/2021:22:27:58 +0000] \"GET /movies/name HTTP/1.1\" 400 25 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"\"email\" is required","level":"error"}
+{"message":"::1 - - [19/May/2021:12:10:09 +0000] \"POST /auth/signup HTTP/1.1\" 400 35 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"Your passwaord must be at least 8 characters and contain at least one uppercase letter, one lowercase letter, one number and one special character","level":"error"}
+{"message":"::1 - - [19/May/2021:12:11:28 +0000] \"POST /auth/signup HTTP/1.1\" 400 160 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
