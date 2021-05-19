@@ -59,3 +59,16 @@
 {"message":"::1 - - [19/May/2021:13:07:11 +0000] \"POST /auth/login HTTP/1.1\" 200 198 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"::1 - - [19/May/2021:13:11:15 +0000] \"POST /auth/login HTTP/1.1\" 200 108 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
 {"message":"::1 - - [19/May/2021:13:11:32 +0000] \"POST /auth/login HTTP/1.1\" 200 128 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:20:56 +0000] \"POST /auth/login HTTP/1.1\" 200 178 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:21:22 +0000] \"POST /auth/login HTTP/1.1\" 200 188 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"Unauthorized","level":"error"}
+{"message":"::1 - - [19/May/2021:13:35:15 +0000] \"GET /movies/4 HTTP/1.1\" 401 26 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:35:39 +0000] \"POST /auth/login HTTP/1.1\" 200 188 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:36:14 +0000] \"GET /movies/4 HTTP/1.1\" 200 18676 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:37:42 +0000] \"GET /movies/4 HTTP/1.1\" 200 18676 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:37:59 +0000] \"POST /auth/login HTTP/1.1\" 200 188 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:38:13 +0000] \"GET /movies/4 HTTP/1.1\" 200 18676 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"Unauthorized","level":"error"}
+{"message":"::1 - - [19/May/2021:13:38:23 +0000] \"GET /movies/4 HTTP/1.1\" 401 26 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:38:33 +0000] \"GET /movies/4 HTTP/1.1\" 200 18676 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}
+{"message":"::1 - - [19/May/2021:13:39:46 +0000] \"GET /movies/4 HTTP/1.1\" 200 18676 \"-\" \"PostmanRuntime/7.28.0\"\n","level":"info"}

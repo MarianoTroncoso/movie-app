@@ -1,9 +1,10 @@
+require('dotenv').config();
+
 const express = require('express');
 const { logger } = require('./configuration');
 const createError = require('http-errors');
-require('dotenv').config()
 
-const middlewares = require('./middlewares');
+const {middleware} = require('./middlewares');
 const routes = require('./routes');
 
 const app = express();
@@ -15,7 +16,7 @@ process.on('unhandledRejection', (reason) => {
 });
 
 // middlewares
-middlewares(app);
+middleware(app);
 
 // routes 
 routes(app);

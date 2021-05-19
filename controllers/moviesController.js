@@ -4,6 +4,8 @@ const createError = require('http-errors');
 
 const getMovies = (req, res, next) => {
 
+  console.log(req.user);
+
   const pageNum = parseInt(req.params.page);
 
   // id valido? 
