@@ -1,4 +1,5 @@
 const { dbCon } = require('../configuration');
+const { userValidator } = require('../validator');
 
 class User { 
   constructor(userData){
@@ -10,14 +11,23 @@ class User {
       await db.insertOne(this.userData);
     });
   };
+
+  // validar la informacion antes de desperdiciar tiempo creando una nueva instancia
+  static validate(userData){
+    // de la validación
+    return userValidator.validate(userData);
+    // console.log(result.error.message);
+  }
 };
 
-const user = new User({
-  username: 'marianotroncoso',
+const userData = {
+  username: 'marianot',
   email: 'petotronco@gmail.com',
-  password: 'mariano123',
+  password: 'Mariano-1234',
   first_name: 'Mariano',
   last_name: 'Troncoso'
-});
+};
 
-user.save();
+// si solo devuelve value, todo bien
+const validation = User.validate(userData);
+console.log(validation)
