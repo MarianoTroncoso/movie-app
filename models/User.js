@@ -14,7 +14,10 @@ class User {
 
         // hash the password
         const hashedPass = hashSync(this.userData['password'], 12); // 12 iteraciones
+        
         this.userData['password'] = hashedPass;
+
+        this.userData['verify'] = false; // para controlar en "Verify account" al enviar el email
         
         await db.insertOne(this.userData);
         cb()

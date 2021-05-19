@@ -1,5 +1,8 @@
 const { User } = require('../../models');
 const createError = require('http-errors');
+const { email } = require('../../configuration');
+const jwt = require('jsonwebtoken');
+const { readFileSync } = require('fs');
 
 const postSignup = (req, res, next) => {
   
@@ -28,6 +31,15 @@ const postSignup = (req, res, next) => {
     if(err){
       return next(createError(500));
     };
+
+    // send email
+    const secret = readFileSync('./private.key');
+    const token = jwt.sign({
+      username: user.userData['username'],
+    }, secret, {
+      expiresIn: '24h'
+    });
+    email(process.env.TO, user.userData['username'], token);
 
     res.status(201).json({
       message: 'User has been succesfully created'
