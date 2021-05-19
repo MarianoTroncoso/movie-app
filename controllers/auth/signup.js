@@ -22,6 +22,17 @@ const postSignup = (req, res, next) => {
     }
   })
   .catch( err => next(createError(500)));
+
+  // save
+  user.save((err) => {
+    if(err){
+      return next(createError(500));
+    };
+
+    res.status(201).json({
+      message: 'User has been succesfully created'
+    })
+  } );
 };
 
 module.exports = {
