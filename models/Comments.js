@@ -40,7 +40,38 @@ class Comment {
 
     });
 
-  }
+  };
+
+  static edit(commentId, text){
+
+    return new Promise( (resolve, reject) => {
+      dbCon('comments', async(db) => {
+        try {
+          
+          await db.updateOne({_id: commentId}, {'$set': {text: text}, '$currentDate': {modifiedAt: true} });
+          resolve();
+
+        } catch (error) {
+          reject(error)
+        }
+      })
+    });
+  };
+
+  static delete(commentId){
+    return new Promise( (resolve, reject) => {
+      dbCon('comments', async (db) => {
+        try {
+
+          await db.deleteOne({_id: commentId});
+          resolve();
+
+        } catch (error) {
+          reject(error);
+        };
+      });
+    });
+  };
 
 }
 

@@ -29,6 +29,49 @@ const postComment = (req, res, next) => {
     .catch( err => next(createError(500)));
 };
 
+const putComment = (req, res, next) => {
+
+  if(!ObjectId.isValid(req.params.commentId)){
+    return next(createError(400))
+  };
+
+  const commentId = new ObjectId(req.params.commentId);
+
+  const error = Comment.validate(req.body['text']);
+  if(error){
+    return next(error);
+  };
+
+  Comment.edit(commentId, req.body['text'])
+  .then( () => { 
+    res.json({
+      message: 'Updated'
+    })
+  })
+  .catch( err => next(createError(500)))
+};
+
+const deleteComment = (req, res, next) => {
+  
+  if(!ObjectId.isValid(req.params.commentId)){
+    return next(createError(400))
+  };
+
+  const commentId = new ObjectId(req.params.commentId);
+
+  Comment.delete(commentId)
+  .then( () => {
+    res.json({
+      message: 'Deleted'
+    });
+  })
+  .catch( err => next(createError(500)))
+
+};
+
+
 module.exports = {
-  postComment
+  postComment,
+  putComment,
+  deleteComment
 };
