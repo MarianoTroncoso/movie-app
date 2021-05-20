@@ -41,7 +41,7 @@ class User {
             // no existe el usuario, guardo
             resolve({
               check: false
-            });
+            })
           } else if(this.userData['username'] === user.username){
             // existe el username
             resolve({
@@ -116,14 +116,5 @@ class User {
     });
   };
 };
-
-// User.login({
-//   username: 'danilo',
-//   password: 'Danilo-1234'
-// })
-// .then( res => {
-//   console.log(res)
-// })
-
 
 module.exports = User;

@@ -31,9 +31,9 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   logger.error(error.message);
 
-  res.statusCode = error.statusCode;
+  // res.statusCode = error.statusCode;
 
-  res.json({
+  res.status(error.statusCode).json({
     message: error.message
   })
 })

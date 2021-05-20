@@ -2,7 +2,9 @@ const { User } = require('../../models');
 const createError = require('http-errors');
 const { email } = require('../../configuration');
 const jwt = require('jsonwebtoken');
+
 const { readFileSync } = require('fs');
+const secret = readFileSync('./private.key');
 
 const postSignup = (req, res, next) => {
   
@@ -33,17 +35,17 @@ const postSignup = (req, res, next) => {
     };
 
     // send email
-    const secret = readFileSync('./private.key');
+    // const secret = readFileSync('./private.key');
     const token = jwt.sign({
       username: user.userData['username'],
     }, secret, {
       expiresIn: '24h'
     });
-    email(process.env.TO, user.userData['username'], token);
+    email(user.userData['email'], user.userData['username'], token);
 
     res.status(201).json({
       message: 'User has been succesfully created'
-    })
+    });
   } );
 };
 

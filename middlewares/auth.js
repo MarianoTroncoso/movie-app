@@ -4,7 +4,7 @@ const { readFileSync } = require('fs');
 
 module.exports = (req, res, next) => {
   if(!req.get('Authorization')){
-    next(createError(401));
+    return next(createError(401));
   };
   const token = req.get('Authorization').split(' ')[1];
 
