@@ -7,7 +7,7 @@ const router = Router();
 
 // tenemos muchas movies, no podemos traer todas de una, usamos paginas
 router
-  .get('/movies/:page', auth, getMovies)
-  .get('/movie/:id', getOneMovie)
+  .get('/movies/:page', getMovies)
+  .get('/movie/:id', auth, getOneMovie)
 
 module.exports = router;

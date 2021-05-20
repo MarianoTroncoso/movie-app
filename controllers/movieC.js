@@ -4,19 +4,16 @@ const createError = require('http-errors');
 
 const getMovies = (req, res, next) => {
 
-  console.log(req.user);
-
   const pageNum = parseInt(req.params.page);
 
   // id valido? 
   if(isNaN(pageNum)) return next(createError(400));
 
-
   const moviesToSkip = (pageNum - 1) * 10;
 
   try {
     dbCon('movies', async(db) => {
-      // queremos mostrar 10 movies por pagina
+      // just show 10 movies per page
       const movies = await db.find({}).skip(moviesToSkip).limit(10).toArray();
       res.json(movies);
     })

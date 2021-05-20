@@ -1,15 +1,16 @@
 const { ObjectId } = require('bson');
 const createError = require('http-errors');
 const { Comment } = require('../models');
+const { dbCon } = require('../configuration');
 
 const postComment = (req, res, next) => {
 
-  if(!ObjectId.isValid(req.params.movieId)){
+  if (!ObjectId.isValid(req.params.movieId)) {
     return next(createError(400))
   };
 
   const error = Comment.validate(req.body['text']);
-  if(error){
+  if (error) {
     return next(error);
   };
 
@@ -21,51 +22,87 @@ const postComment = (req, res, next) => {
   const comment = new Comment(commentData);
 
   comment.save()
-    .then( () => {
+    .then(() => {
       res.status(201).json({
         message: 'The comment was succesfully created'
       });
     })
-    .catch( err => next(createError(500)));
+    .catch(err => next(createError(500)));
 };
 
 const putComment = (req, res, next) => {
 
-  if(!ObjectId.isValid(req.params.commentId)){
+  if (!ObjectId.isValid(req.params.commentId)) {
     return next(createError(400))
   };
 
   const commentId = new ObjectId(req.params.commentId);
 
   const error = Comment.validate(req.body['text']);
-  if(error){
+  if (error) {
     return next(error);
   };
 
   Comment.edit(commentId, req.body['text'])
-  .then( () => { 
-    res.json({
-      message: 'Updated'
+    .then(() => {
+      res.json({
+        message: 'Updated'
+      })
     })
-  })
-  .catch( err => next(createError(500)))
+    .catch(err => next(createError(500)))
 };
 
 const deleteComment = (req, res, next) => {
-  
-  if(!ObjectId.isValid(req.params.commentId)){
+
+  if (!ObjectId.isValid(req.params.commentId)) {
     return next(createError(400))
   };
 
   const commentId = new ObjectId(req.params.commentId);
 
   Comment.delete(commentId)
-  .then( () => {
-    res.json({
-      message: 'Deleted'
-    });
-  })
-  .catch( err => next(createError(500)))
+    .then(() => {
+      res.json({
+        message: 'Deleted'
+      });
+    })
+    .catch(err => next(createError(500)))
+
+};
+
+const getComments = (req, res, next) => {
+
+  if (!ObjectId.isValid(req.params.movieId)) {
+    return next(createError(400))
+  };
+
+  const movieId = new ObjectId(req.params.movieId);
+
+  const pageNum = parseInt(req.params.page);
+  if (isNaN(pageNum)) {
+    return next(createError(400));
+  };
+
+  // const commentsToSkip = pageNum * 10;
+
+  dbCon('comments', async (db) => {
+
+    try {
+      const comments = await db
+      .find({ movieId })
+      .sort({ createdAt: -1 })
+      // .skip(commentsToSkip)
+      .limit(10)
+      .toArray();
+  
+      res.json(comments);
+
+    } catch (error) {
+      next(createError(500));
+    };
+
+  });
+
 
 };
 
@@ -73,5 +110,6 @@ const deleteComment = (req, res, next) => {
 module.exports = {
   postComment,
   putComment,
-  deleteComment
+  deleteComment,
+  getComments
 };
