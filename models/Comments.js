@@ -29,14 +29,28 @@ class Comment {
     
     return new Promise((resolve, reject) => {
 
-      dbCon('comments', async (db) => {
+      dbCon('comments', async (db, db2) => {
         try {
-          await db.insertOne(this.data);
-          resolve()
+
+          const comment = await db.insertOne(this.data);
+          this.data['id'] = comment.insertedId;
+
+          // add the comment to a film
+          await db2.updateOne({_id: this.data['movieId']}, {
+            '$push': {
+              comments: {
+                '$each': [{_id: this.data['id'], username: this.data['username'], text: this.data['text']}], 
+                '$slice': -10 // only the last 10 comments
+              }
+            }
+          });
+
+          resolve();
+
         } catch (error) {
           reject(error);
         }
-      });
+      }, 'movies');
 
     });
 
